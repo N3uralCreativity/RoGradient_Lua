@@ -1,3 +1,171 @@
+### **Advanced Gradient Module - Usage Instructions**
+
+This document provides step-by-step instructions on how to use the **Advanced Gradient Module** in **Roblox Luau**. It covers every function, how to call them, and what parameters they require.
+
+---
+
+## **1. Requiring the Module**
+
+First, make sure the module script is placed in **ReplicatedStorage** or any accessible location in your game.
+
+```lua
+local AdvancedGradientModule = require(game.ReplicatedStorage.AdvancedGradientModule)
+```
+
+---
+
+## **2. Converting HEX to Color3 (`hexToColor3`)**
+
+### **Function Definition:**
+```lua
+local function hexToColor3(hexCode) -> Color3
+```
+
+### **Usage:**
+```lua
+local color = AdvancedGradientModule.hexToColor3("#FFAA33")
+print(color) -- Output: Color3.new(1, 0.666, 0.2)
+```
+
+### **Parameters:**
+- `hexCode` (**string**) - A valid 6-character HEX color string.
+
+### **Returns:**
+- A `Color3` object representing the converted color.
+
+---
+
+## **3. Interpolation Function (`applyInterpolation`)**
+
+### **Function Definition:**
+```lua
+local function applyInterpolation(t: number, mode: string) -> number
+```
+
+### **Usage:**
+```lua
+local easedValue = AdvancedGradientModule.applyInterpolation(0.5, "EaseOutQuad")
+print(easedValue) -- Output: 0.75
+```
+
+### **Parameters:**
+- `t` (**number**) - The interpolation factor (0 to 1).
+- `mode` (**string**) - The easing mode (`"Linear"`, `"EaseInQuad"`, `"EaseOutQuad"`, `"EaseInOutQuad"`).
+
+### **Returns:**
+- A number representing the adjusted interpolation value.
+
+---
+
+## **4. Calculating Automatic Steps (`calculateAutoSteps`)**
+
+### **Function Definition:**
+```lua
+local function calculateAutoSteps(c1: Color3, c2: Color3) -> number
+```
+
+### **Usage:**
+```lua
+local steps = AdvancedGradientModule.calculateAutoSteps(Color3.new(1, 0, 0), Color3.new(0, 0, 1))
+print(steps) -- Output: Steps between red and blue
+```
+
+### **Parameters:**
+- `c1` (**Color3**) - The first color.
+- `c2` (**Color3**) - The second color.
+
+### **Returns:**
+- A number representing the calculated steps (clamped between 2 and 20).
+
+---
+
+## **5. Creating a UI Gradient (`createAdvancedGradient`)**
+
+### **Function Definition:**
+```lua
+function AdvancedGradientModule.createAdvancedGradient(parentUiObject: GuiObject, hexColor1: string, hexColor2: string, stepMode: string, stepCount: number?, interpolationMode: string) -> UIGradient
+```
+
+### **Usage:**
+```lua
+local frame = script.Parent
+local gradient = AdvancedGradientModule.createAdvancedGradient(frame, "#FF0000", "#0000FF", "Auto", nil, "EaseInOutQuad")
+```
+
+### **Parameters:**
+- `parentUiObject` (**GuiObject**) - The UI element where the gradient will be applied.
+- `hexColor1` (**string**) - The starting HEX color.
+- `hexColor2` (**string**) - The ending HEX color.
+- `stepMode` (**string**) - Either `"Auto"` (auto steps) or `"Manual"` (use `stepCount`).
+- `stepCount` (**number**, optional) - The number of gradient steps (if manual mode is chosen).
+- `interpolationMode` (**string**) - The easing method.
+
+### **Returns:**
+- A `UIGradient` instance applied to the parent UI object.
+
+---
+
+## **6. Applying Stepped Color Changes (`colorPropsStepped`)**
+
+### **Function Definition:**
+```lua
+function AdvancedGradientModule.colorPropsStepped(porpList: {GuiObject}, hexColor1: string, hexColor2: string, generationMethod: string, midColorHex: string?)
+```
+
+### **Usage:**
+```lua
+local frames = {frame1, frame2, frame3, frame4}
+AdvancedGradientModule.colorPropsStepped(frames, "#FF0000", "#0000FF", "MultiColor", "#00FF00")
+```
+
+### **Parameters:**
+- `porpList` (**table of GuiObjects**) - A list of UI objects where colors will be applied.
+- `hexColor1` (**string**) - The first color.
+- `hexColor2` (**string**) - The second color.
+- `generationMethod` (**string**) - The method (`"Linear"`, `"EaseInQuad"`, `"MultiColor"`).
+- `midColorHex` (**string**, optional) - A third color to be used in `"MultiColor"` mode.
+
+### **Returns:**
+- Modifies UI elements directly, no return value.
+
+---
+
+## **7. Example Use Case: Applying a Gradient to Multiple UI Elements**
+
+### **Step-by-Step Code Implementation:**
+```lua
+-- Load the module
+local AdvancedGradientModule = require(game.ReplicatedStorage.AdvancedGradientModule)
+
+-- Define UI Elements
+local uiFrame = script.Parent.Frame
+local uiButtons = {script.Parent.Button1, script.Parent.Button2, script.Parent.Button3}
+
+-- Apply a smooth UI gradient
+AdvancedGradientModule.createAdvancedGradient(uiFrame, "#FF0000", "#0000FF", "Auto", nil, "EaseOutQuad")
+
+-- Apply stepped color transitions to multiple buttons
+AdvancedGradientModule.colorPropsStepped(uiButtons, "#FF0000", "#0000FF", "MultiColor", "#00FF00")
+```
+
+This will apply a **red-to-blue gradient** on a frame and a **multi-colored transition** on buttons.
+
+---
+
+## **📌 Notes & Best Practices**
+- Use **`Auto`** mode for automatic step calculation.
+- Use **`MultiColor`** mode when you want a three-color transition.
+- UIGradient works best with **frames, buttons, and text elements** in Roblox.
+- Make sure all elements exist before calling functions to prevent errors.
+
+---
+
+## **🎯 Final Thoughts**
+This module allows for **dynamic and smooth color transitions** in UI elements. By adjusting interpolation methods and step counts, you can create visually appealing UI designs in Roblox games.
+
+Let me know if you need further clarifications or enhancements! 🚀
+
+
 ### **Explanation of the Code & Its Mathematics**
 This **Advanced Gradient Module** is written in **Luau 5.1 Lua** and is responsible for generating smooth color gradients in UI elements. It includes:
 
