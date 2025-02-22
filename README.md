@@ -163,8 +163,6 @@ This will apply a **red-to-blue gradient** on a frame and a **multi-colored tran
 ## **🎯 Final Thoughts**
 This module allows for **dynamic and smooth color transitions** in UI elements. By adjusting interpolation methods and step counts, you can create visually appealing UI designs in Roblox games.
 
-Let me know if you need further clarifications or enhancements! 🚀
-
 
 ### **Explanation of the Code & Its Mathematics**
 This **Advanced Gradient Module** is written in **Luau 5.1 Lua** and is responsible for generating smooth color gradients in UI elements. It includes:
@@ -278,6 +276,5 @@ I generated visualizations showing:
    ![s18012502222025](https://a.okmd.dev/md/67ba02e5809c9.png)
 ---
 
-These visualizations demonstrate how different easing functions affect gradient transitions. Let me know if you need further insights! 🚀
 Luau : https://luau.org/
 Repository : https://github.com/luau-lang/luau
