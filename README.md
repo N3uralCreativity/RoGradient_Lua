@@ -1,5 +1,4 @@
 ### **Explanation of the Code & Its Mathematics**
-Luau : https://luau.org/ ; Repository : https://github.com/luau-lang/luau
 This **Advanced Gradient Module** is written in **Luau 5.1 Lua** and is responsible for generating smooth color gradients in UI elements. It includes:
 
 1. **HEX to Color3 conversion**
@@ -112,3 +111,5 @@ I generated visualizations showing:
 ---
 
 These visualizations demonstrate how different easing functions affect gradient transitions. Let me know if you need further insights! 🚀
+Luau : https://luau.org/
+Repository : https://github.com/luau-lang/luau
